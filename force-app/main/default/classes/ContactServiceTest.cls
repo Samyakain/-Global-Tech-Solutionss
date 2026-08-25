@@ -20,11 +20,11 @@ private class ContactServiceTest {
 
         Test.startTest();
 
-        // ContactService.updateContactName(
-        //    con.Id,
-        //    'Jane',
-        //    'Smith'
-        // );
+        ContactService.updateContactName(
+            con.Id,
+            'Jane',
+            'Smith'
+         );
 
         Test.stopTest();
 

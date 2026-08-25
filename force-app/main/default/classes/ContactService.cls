@@ -1,6 +1,12 @@
 public with sharing class ContactService {
 
-    
+    /**
+     * Updates the First Name and Last Name of a Contact.
+     *
+     * @param contactId Id of the Contact
+     * @param firstName New First Name
+     * @param lastName New Last Name
+     */
     public static void updateContactName(Id contactId, String firstName, String lastName) {
 
         if (contactId == null) {
@@ -18,6 +24,5 @@ public with sharing class ContactService {
         con.LastName = lastName;
 
         update con;
-        System.debug('Samyak');
     }
 }
