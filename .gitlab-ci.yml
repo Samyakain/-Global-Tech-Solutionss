@@ -88,7 +88,7 @@ code_analysis:
   image: ubuntu:latest
   before_script:
     - apt-get update
-    - apt-get install -y wget default-jdk unzip
+    - apt-get install -y wget default-jdk unzip curl
     - wget https://github.com/pmd/pmd/releases/download/pmd_releases/$PMD_VERSION-rc4/pmd-dist-$PMD_VERSION-rc4-bin.zip
     - unzip pmd-dist-$PMD_VERSION-rc4-bin.zip -d ~
     - chmod a+x ~/pmd-bin-7.0.0-rc4/shell/pmd-completion.sh
