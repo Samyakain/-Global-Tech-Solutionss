@@ -123,8 +123,8 @@ validationBeforeQA:
   script:
     - echo "validation in qa org ......"
     - *skip_if_no_changes
-    - sf project deploy start -x changed-sources/package/package.xml --post-destructive-changes changed-sources/destructiveChanges/destructiveChanges.xml --dry-run --test-level RunLocalTests --target-org qaOrg --ignore-warnings --verbose || (curl -X POST -H "Content-Type: application/json" -d "{\"text\":\"Validation Failed in QA\"}" "$SLACK_WEBHOOK" && exit 1)
-    - curl -X POST -H "Content-Type: application/json" -d "{\"text\":\"Validation Passed in QA\"}" "$SLACK_WEBHOOK"
+    - 'sf project deploy start -x changed-sources/package/package.xml --post-destructive-changes changed-sources/destructiveChanges/destructiveChanges.xml --dry-run --test-level RunLocalTests --target-org qaOrg --ignore-warnings --verbose || (curl -X POST -H "Content-Type: application/json" -d "{\"text\":\"Validation Failed in QA\"}" "$SLACK_WEBHOOK" && exit 1)'
+    - 'curl -X POST -H "Content-Type: application/json" -d "{\"text\":\"Validation Passed in QA\"}" "$SLACK_WEBHOOK"'
   rules:
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "QA"'
 
@@ -136,8 +136,8 @@ Deploy To Qa:
   script:
     - echo "deploying to qa org ......"
     - *skip_if_no_changes
-    - sf project deploy start -x changed-sources/package/package.xml --post-destructive-changes changed-sources/destructiveChanges/destructiveChanges.xml --test-level RunLocalTests --target-org qaOrg --ignore-warnings --verbose || (curl -X POST -H "Content-Type: application/json" -d "{\"text\":\"Changes Deployed Failed in QA\"}" "$SLACK_WEBHOOK" && exit 1)
-    - curl -X POST -H "Content-Type: application/json" -d "{\"text\":\"Changes Deployed in QA\"}" "$SLACK_WEBHOOK"
+    - 'sf project deploy start -x changed-sources/package/package.xml --post-destructive-changes changed-sources/destructiveChanges/destructiveChanges.xml --test-level RunLocalTests --target-org qaOrg --ignore-warnings --verbose || (curl -X POST -H "Content-Type: application/json" -d "{\"text\":\"Changes Deployed Failed in QA\"}" "$SLACK_WEBHOOK" && exit 1)'
+    - 'curl -X POST -H "Content-Type: application/json" -d "{\"text\":\"Changes Deployed in QA\"}" "$SLACK_WEBHOOK"'
   rules:
     - if: '$CI_COMMIT_BRANCH == "QA"'
 
@@ -162,8 +162,8 @@ validationBeforeUAT:
   script:
     - echo "validation in uat org ......"
     - *skip_if_no_changes
-    - sf project deploy start -x changed-sources/package/package.xml --post-destructive-changes changed-sources/destructiveChanges/destructiveChanges.xml --dry-run --test-level RunLocalTests --target-org uatOrg --ignore-warnings --verbose || (curl -X POST -H "Content-Type: application/json" -d "{\"text\":\"Validation Failed in UAT\"}" "$SLACK_WEBHOOK" && exit 1)
-    - curl -X POST -H "Content-Type: application/json" -d "{\"text\":\"Validation Passed in UAT\"}" "$SLACK_WEBHOOK"
+    - 'sf project deploy start -x changed-sources/package/package.xml --post-destructive-changes changed-sources/destructiveChanges/destructiveChanges.xml --dry-run --test-level RunLocalTests --target-org uatOrg --ignore-warnings --verbose || (curl -X POST -H "Content-Type: application/json" -d "{\"text\":\"Validation Failed in UAT\"}" "$SLACK_WEBHOOK" && exit 1)'
+    - 'curl -X POST -H "Content-Type: application/json" -d "{\"text\":\"Validation Passed in UAT\"}" "$SLACK_WEBHOOK"'
   rules:
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "UAT"'
 
@@ -175,8 +175,8 @@ Deploy To UAT:
   script:
     - echo "deploying to uat org ......"
     - *skip_if_no_changes
-    - sf project deploy start -x changed-sources/package/package.xml --post-destructive-changes changed-sources/destructiveChanges/destructiveChanges.xml --test-level RunLocalTests --target-org uatOrg --ignore-warnings --verbose || (curl -X POST -H "Content-Type: application/json" -d "{\"text\":\"Changes Deployed Failed in UAT\"}" "$SLACK_WEBHOOK" && exit 1)
-    - curl -X POST -H "Content-Type: application/json" -d "{\"text\":\"Changes Deployed in UAT\"}" "$SLACK_WEBHOOK"
+    - 'sf project deploy start -x changed-sources/package/package.xml --post-destructive-changes changed-sources/destructiveChanges/destructiveChanges.xml --test-level RunLocalTests --target-org uatOrg --ignore-warnings --verbose || (curl -X POST -H "Content-Type: application/json" -d "{\"text\":\"Changes Deployed Failed in UAT\"}" "$SLACK_WEBHOOK" && exit 1)'
+    - 'curl -X POST -H "Content-Type: application/json" -d "{\"text\":\"Changes Deployed in UAT\"}" "$SLACK_WEBHOOK"'
   rules:
     - if: '$CI_COMMIT_BRANCH == "UAT"'
 
@@ -202,8 +202,8 @@ validationBeforePROD:
   script:
     - echo "validation in production org ......"
     - *skip_if_no_changes
-    - sf project deploy start -x changed-sources/package/package.xml --post-destructive-changes changed-sources/destructiveChanges/destructiveChanges.xml --dry-run --test-level RunLocalTests --target-org prodOrg --ignore-warnings --verbose || (curl -X POST -H "Content-Type: application/json" -d "{\"text\":\"Validation Failed in Master\"}" "$SLACK_WEBHOOK" && exit 1)
-    - curl -X POST -H "Content-Type: application/json" -d "{\"text\":\"Validation Passed in Master\"}" "$SLACK_WEBHOOK"
+    - 'sf project deploy start -x changed-sources/package/package.xml --post-destructive-changes changed-sources/destructiveChanges/destructiveChanges.xml --dry-run --test-level RunLocalTests --target-org prodOrg --ignore-warnings --verbose || (curl -X POST -H "Content-Type: application/json" -d "{\"text\":\"Validation Failed in Master\"}" "$SLACK_WEBHOOK" && exit 1)'
+    - 'curl -X POST -H "Content-Type: application/json" -d "{\"text\":\"Validation Passed in Master\"}" "$SLACK_WEBHOOK"'
   rules:
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "master"'
 
@@ -215,8 +215,8 @@ Deploy To PROD:
   script:
     - echo "deploying to production org ......"
     - *skip_if_no_changes
-    - sf project deploy start -x changed-sources/package/package.xml --post-destructive-changes changed-sources/destructiveChanges/destructiveChanges.xml --test-level RunLocalTests --target-org prodOrg --ignore-warnings --verbose || (curl -X POST -H "Content-Type: application/json" -d "{\"text\":\"Changes Deployed Failed in Master\"}" "$SLACK_WEBHOOK" && exit 1)
-    - curl -X POST -H "Content-Type: application/json" -d "{\"text\":\"changes Deployed in Production\"}" "$SLACK_WEBHOOK"
+    - 'sf project deploy start -x changed-sources/package/package.xml --post-destructive-changes changed-sources/destructiveChanges/destructiveChanges.xml --test-level RunLocalTests --target-org prodOrg --ignore-warnings --verbose || (curl -X POST -H "Content-Type: application/json" -d "{\"text\":\"Changes Deployed Failed in Master\"}" "$SLACK_WEBHOOK" && exit 1)'
+    - 'curl -X POST -H "Content-Type: application/json" -d "{\"text\":\"changes Deployed in Production\"}" "$SLACK_WEBHOOK"'
   rules:
     - if: '$CI_COMMIT_BRANCH == "master"'
       when: manual
